@@ -1,0 +1,43 @@
+* {
+   margin: 0;
+   padding: 0;
+}
+
+.weather__app {
+   background-color: #dcdcdc;
+   width: 35%;
+   text-align: center;
+   margin: 0 auto;
+   margin-top: 10%;
+}
+.city {
+   font-size: 25px;
+   line-height: 40px;
+   padding: 10px 0 10px 0;
+}
+.degree {
+   font-size: 25px;
+   line-height: 20px;
+   padding: 10px 0 0 0;
+}
+.weather {
+   font-size: 20px;
+   padding-bottom: 10px;
+   border-bottom: 1px solid #000;
+}
+.gust {
+   display: flex;
+   justify-content: center;
+   list-style: none;
+   font-size: 18px;
+   line-height: 30px;
+   padding-top: 10px;
+}
+.speed {
+   display: flex;
+   justify-content: center;
+   list-style: none;
+   font-size: 18px;
+   line-height: 30px;
+   padding-bottom: 10px;
+}
