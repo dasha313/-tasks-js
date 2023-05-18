@@ -1,15 +1,28 @@
-fetch('https://api.openweathermap.org/data/2.5/weather?q=Minsk&appid=df068345397ee8c206cc4d1be611ff1c')
-   .then(function (resp) { return resp.json() })
-   .then(function (data) {
-      console.log(data);
-      document.querySelector('.city').innerHTML = data.name;
-      document.querySelector('.degree').innerHTML = Math.round(data.main.temp - 273) + '&deg;';
-      //https://openweathermap.org/img/wn/13d@2x.png
-      document.querySelector('.feature').innerHTML = `<img src="https://openweathermap.org/img/wn/${data.weather[0]['icon']}@2x.png">`;
-      document.querySelector('.weather').innerHTML = data.weather[0]['description'];
-      document.querySelector('.gust li').innerHTML = data.wind.gust;
-      document.querySelector('.speed li').innerHTML = data.wind.speed;
-   })
-   .catch(function () {
+field.onclick = function (event) {
+   // координаты поля относительно окна браузера
+   let fieldCoords = this.getBoundingClientRect();
 
-   });
+   let ballCoords = {
+      top: event.clientY - fieldCoords.top - field.clientTop - ball.clientHeight / 2,
+      left: event.clientX - fieldCoords.left - field.clientLeft - ball.clientWidth / 2
+   };
+
+   // запрещаем пересекать верхнюю границу поля
+   if (ballCoords.top < 0) ballCoords.top = 0;
+
+   // запрещаем пересекать левую границу поля
+   if (ballCoords.left < 0) ballCoords.left = 0;
+
+   // запрещаем пересекать правую границу поля
+   if (ballCoords.left + ball.clientWidth > field.clientWidth) {
+      ballCoords.left = field.clientWidth - ball.clientWidth;
+   }
+
+   // запрещаем пересекать нижнюю границу поля
+   if (ballCoords.top + ball.clientHeight > field.clientHeight) {
+      ballCoords.top = field.clientHeight - ball.clientHeight;
+   }
+
+   ball.style.left = ballCoords.left + 'px';
+   ball.style.top = ballCoords.top + 'px';
+}
